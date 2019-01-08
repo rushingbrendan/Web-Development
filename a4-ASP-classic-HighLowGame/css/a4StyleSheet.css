@@ -1,0 +1,102 @@
+/*
+  FILE          : a4StyleSheet.css
+  PROJECT       : PROG2000 - Web Development: Assignment #4 - Hi-Low game in ASP
+  PROGRAMMER    : Brendan Rushing
+  FIRST VERSION : 2018-11-01
+  DESCRIPTION   :   Hi-Lo game written with server-side written in ASP
+					Inputs are validated in javascript
+					Forms are written in HTML
+                    The user is asked for a username and then a max number guess
+                    The user then precedes to guess the random number and the range is shown.
+                    The user is shown a message and the background is changed after the game is won.
+                    The user can then play the game again by pressing the Play again button.
+
+
+                    This file is css style sheet for the html page
+
+*/
+
+
+body
+{
+    background-color:       #FFFFFF;  
+}
+h1
+{
+    color:             green;
+    font-size:            42px;
+    font-family:        Arial;
+    text-align:         center;
+
+}
+.number
+{
+    color:              blue;
+    font-size:          65px;
+    font-family:        Arial;
+    font-style:         italic;
+    font-style:         bold;
+    text-align:         center;
+}
+
+.userPrompt
+{
+    color:              black;
+    font-size:          30px;
+    font-family:        Arial;
+    font-style:         bold;
+    text-align:         center;
+}
+
+.wrongGuess
+{
+    color:              red;
+    font-size:          22px;
+    font-family:        Arial;
+    font-style:         bold,italic;
+    text-align:         center;
+}
+
+.errorMessage
+{
+    color:              red;
+    font-size:          18px;
+    font-family:        Arial;
+    font-style:         italic;
+    text-align:         center;
+}
+
+
+input[type="text"]
+{
+    font-family:            Courier;
+    font-size:              20px;
+}
+
+
+.button {
+    background-color:green;
+    border: none;
+    color: white;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    align-content: center;
+}
+
+
+.winningButton {
+    background-color:green;
+    border: none;
+    color: red;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    align-content: center;
+    margin: auto;
+    display: block;
+    width: 100%;
+}

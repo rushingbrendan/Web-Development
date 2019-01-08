@@ -1,0 +1,258 @@
+<!-- 
+  FILE          : a01.html
+  PROJECT       : PROG2000 - Web Development: Hi-Lo in JavaScript and HTML
+  PROGRAMMER    : Brendan Rushing
+  FIRST VERSION : 2018-08-09
+  DESCRIPTION   :   Hi-Lo game written in Javascript and HTML
+                    The user is asked for a username and then a max number guess
+                    The user then precedes to guess the random number and the range is shown.
+                    The user is shown a message and the background is changed after the game is won.
+                    The user can then play the game again by pressing the reset button.
+-->
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Web Designed & Development - A-01 : Hi-Lo in JavaScript and HTML</title>
+    <script type="text/javascript">
+
+ /*
+FUNCTION :getRandomInt
+DESCRIPTION : This function returns a randomnumber between the ranges given in parameter
+PARAMETERS : min, max
+RETURNS : randomNumber
+*/
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min; //returns random number
+}
+
+
+/*
+FUNCTION : buttonHandler
+DESCRIPTION : This function is called when the button is clicked 
+              and then calls the required function needed next
+PARAMETERS : none
+RETURNS : none
+*/
+function buttonHandler() {
+
+  if (document.getElementById("searchTxt").value != ""){  //goes to stage as long as the search box has valid entry
+
+    if (stage == 0){
+        askUserForName();
+      }
+      else if (stage == 1){
+        nameEntered();
+      }
+      else if (stage == 2){
+        getMaxNumber();
+      }
+      else if (stage == 3){
+        getGuess();
+      }
+      else if (stage == 4){
+      resetGame();
+
+      }
+  }
+}
+
+
+/*
+FUNCTION : askUserForName
+DESCRIPTION : This function prints the text to ask user for name
+PARAMETERS : none
+RETURNS : none
+*/
+function askUserForName() {
+
+  inputNormal.innerHTML = "Enter your name: ";
+  stage = 1;  //move to next stage after click
+}
+
+
+/*
+FUNCTION : nameEntered
+DESCRIPTION : This function gets the name entered and asks the user for max number
+PARAMETERS : none
+RETURNS : none
+*/
+function nameEntered() {
+
+  if (userName.length == 0){
+    userName = document.getElementById("searchTxt").value;  //get text box value
+  }
+
+  // clean up the UI from the previous use
+  inputNormal.innerHTML = "";
+
+  if (userName.length != 0){
+    inputNormal.innerHTML = userName+ ", Please Enter Maximum Number for High-Low Game: ";
+    document.getElementById('searchTxt').value = '';
+    stage = 2;
+  }
+  else{
+    askUserForName();
+  }
+}
+
+
+
+/*
+FUNCTION : getMaxNumber
+DESCRIPTION : This function gets the max number and asks for a number to guess
+PARAMETERS : none
+RETURNS : none
+*/
+function getMaxNumber() {
+  inputNormal.innerHTML = userName+ ", Please Enter Maximum Number for High-Low Game: ";
+  maxNumber = document.getElementById("searchTxt").value;
+
+  var alphaCheck = /^[0-9]*$/;  //regex for numbers
+  var retCode = maxNumber.match(alphaCheck); //check regex match
+
+  if(retCode == null){
+    //not valid name
+    inputError.innerHTML = "Please only enter number characters";
+    
+    document.getElementById('searchTxt').value = '';
+    maxNumber = 0;
+    getMaxNumber();
+
+  }
+
+
+  // clean up the UI from the previous use
+  inputNormal.innerHTML = "";
+
+  if (maxNumber > 1){
+    randomNumber = getRandomInt(1,maxNumber);
+    inputNormal.innerHTML = "Your allowable guessing range is any value between " + minNumber + " and " + maxNumber +"<br>" + "Enter a number to guess";
+    document.getElementById('searchTxt').value = '';
+
+    stage =3;
+  }
+  else{
+  getMaxNumber();
+  document.getElementById('searchTxt').value = '';
+  }
+
+ inputError.innerHTML = "";
+}
+
+
+/*
+FUNCTION : getGuess
+DESCRIPTION : This function gets the user guess and checkes to see if its correct
+              A new range is calculated and displayed.
+PARAMETERS : none
+RETURNS : none
+*/
+function getGuess() {
+  inputNormal.innerHTML = "Your allowable guessing range is any value between " + minNumber + " and " + maxNumber +"<br>" + "Enter a number to guess";
+    
+  currentGuess = document.getElementById("searchTxt").value;
+  document.getElementById('searchTxt').value = '';
+
+  var alphaCheck = /^[0-9]*$/;  //regex for numbers
+  var retCode = currentGuess.match(alphaCheck); //check regex match
+
+  if(retCode == null){
+    //not valid name
+    inputError.innerHTML = "Please only enter number characters";
+    
+    getGuess();
+
+  }
+
+  if ((currentGuess < minNumber) || (currentGuess > maxNumber)){
+    document.getElementById('searchTxt').value = '';
+    getGuess();
+  }
+ 
+
+  // clean up the UI from the previous use
+  inputNormal.innerHTML = "";
+
+  if (currentGuess == randomNumber){
+    //WINNER
+    document.body.style.backgroundColor = "#FFFF00";
+    inputNormal.innerHTML = "You Win!! You guessed the number!!";
+    document.getElementById('searchTxt').style.visibility = 'hidden'; //hide text box
+    document.getElementById("nameInput").value = "Reset"; //change button txt
+    document.getElementById('searchTxt').value = "gameover";
+  
+    stage = 4;
+
+  }
+  else if ((currentGuess < maxNumber) && (currentGuess > 1)){
+
+  if (currentGuess < randomNumber){
+    minNumber = parseInt(currentGuess) + parseInt(1);
+  }
+  else if (randomNumber < currentGuess ){
+    maxNumber = parseInt(currentGuess) - parseInt(1);
+  }
+
+  inputNormal.innerHTML = "You did not guess the correct number" + "<br>"+"Your allowable guessing range is any value between " + minNumber + " and " + maxNumber +"<br>" + "Enter a number to guess";
+
+  stage = 3;
+
+  }
+  else{
+    document.getElementById('searchTxt').value = '';
+    getGuess();
+  }
+
+ inputError.innerHTML = "";
+}
+
+
+/*
+FUNCTION : resetGame
+DESCRIPTION : This function resets the program and starts the game again
+PARAMETERS : none
+RETURNS : none
+*/
+  function resetGame() {
+
+document.body.style.backgroundColor = "#FFFFFF";  //make bg white
+  document.getElementById('searchTxt').style.visibility = 'visible';  //renable txt box
+  document.getElementById("nameInput").value = "Enter";   //make txt box button text Enter
+  document.getElementById('searchTxt').value = '';  //clear txt box
+  randomNumber = 0;   //reset variables
+  minNumber = 1;
+  maxNumber = 0;
+  currentGuess = 0;
+  nameEntered();
+
+}
+
+
+  </script>
+  </head>
+  <body>
+
+      <div id="inputNormalTop" style="color: black;"></div>
+      <div id="inputNormal" style="color: black;"></div>
+      <input name="nameInput" type="text" maxlength="512" id="searchTxt" class="searchField"/>
+      <input id="nameInput" type="button" value="Enter" onclick="buttonHandler();" />&nbsp;&nbsp;
+      <div id="inputError" style="color:red;"></div>
+
+       <script type="text/javascript">
+        var userName = "";    //initialize variables
+        var maxNumber = 0;
+        var minNumber = 1;
+        var currentGuess = 0;
+        var stage = 0;
+        var randomNumber = 0;
+        askUserForName(); //start program by asking for name
+        
+      </script>
+  
+  </body>
+</html>

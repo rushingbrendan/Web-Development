@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<HTML>
+
+<!--
+*  FILE          : cgi-zoo.html
+*  PROJECT       : PROG2000 - Web Development: Assignment #3
+*  PROGRAMMER    : Brendan Rushing
+*  FIRST VERSION : 2018-10-16
+*  DESCRIPTION   : This assignment has 2 parts: php client-side and CGI server-side
+
+    This webform asks the user for their name.
+    Their name is then shown and their favorite animal is asked in a drop down menu
+
+    The form then calls a php server-side script to show them information about the animal.
+
+
+-->
+
+<head>
+    <TITLE>Animal Serve Form</TITLE>
+
+    <script type="text/javascript">
+
+
+        /*
+        FUNCTION : validateUserName
+        DESCRIPTION : This function validates that the username is only characters/space and shows animal selection
+                        and hides username text field
+        PARAMETERS : none
+        RETURNS : none
+        */
+        function validateUserName() {
+
+            var userNameInput = document.getElementById("userNameInput");
+            var animalSelectionInput = document.getElementById("animalSelectionTable");
+            var userName = document.getElementById("userNameText").value;
+
+
+            var alphaCheck = /^[A-Za-z.\s_-]+$/;  //regex for letters (with capital), space and .
+            var retCode = userName.match(alphaCheck); //check regex match
+
+            if (retCode != null) {
+                //name is valid
+                document.getElementById("inputError").innerHTML = "";
+
+                userNameInput.style.display = "none";   //hide name input
+                animalSelectionInput.style.display = "block";   //show animal selection
+
+
+                document.getElementById("userText").innerHTML = userName + ","; //prompt user with name
+
+                document.getElementById("submitButton").style.display = "none";    //hide first button
+                document.getElementById("submitFinalButton").style.display = "inline";  //show submit button
+
+                return true;
+            }
+            else {
+                document.getElementById("inputError").innerHTML = "You can only enter letters for name";
+            }
+
+        }
+
+
+    </script>
+
+</head>
+<BODY>
+
+    <h1 align="left">Animal Serve Form</h1>
+    <p align="left" id="userText">Please complete the following information and when done, press the <b><i>Submit</i></b> button.</p>
+
+    <Form id="animalServeForm" name="AnimalServeForm" action="animals.php" method="GET">
+        <table>
+
+            <TR id="userNameInput">
+                <!-- Name text input -->
+                <TD align="right">Enter Your Name: </TD>
+                <TD align="left"><INPUT id="userNameText" type="text" required size="40" value="" name="name" /></TD>
+            </TR>
+            <tr id="animalSelectionTable" style="display:none;">
+                <!-- Animal selection -->
+                <td align="right">Select Your Favorite Animal: </td>
+                <td></td>
+                <td align="left">
+                    <SELECT required name="animalSelection">
+                        <OPTION value="">--Select Animal--</OPTION>
+                        <OPTION value="Anteater">Anteater</OPTION>
+                        <OPTION value="Giraffe">Giraffe</OPTION>
+                        <OPTION value="Goose">Goose</OPTION>
+                        <OPTION value="Lion">Lion</OPTION>
+                        <OPTION value="Moose">Moose</OPTION>
+                        <OPTION value="Beaver">Beaver</OPTION>
+                    </SELECT>
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+
+                <!-- Submit Button -->
+                <td align="left">
+                    <INPUT align="center" type="button" id="submitButton" name="submitButton" value="Submit" onclick="validateUserName();" />
+                    <INPUT align="center" type="submit" id="submitFinalButton" name="submitButton" value="Submit" onsubmit="true" style="display:none;" />
+                </td>
+
+            </tr>
+
+        </table>
+
+    </Form>
+
+    <div id="inputError" style="color:red;"></div>
+
+</BODY>
+
+</HTML>
+
+

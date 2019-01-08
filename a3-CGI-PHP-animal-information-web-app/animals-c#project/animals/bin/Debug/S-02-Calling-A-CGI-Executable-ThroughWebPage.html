@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Multiplication Form</title>
+  </head>
+  <body>
+    <form name="SampleForm" action="cgi/CGI-Example2.exe" method="get">
+      <h3>Sample Form</h3>
+      <p>
+        Welcome to the new and revolutionary <i>Multiplication Service</i> ... please specify your
+        <u>numbers</u> below ...
+      </p>
+
+      <!-- 
+           I like my form elements to line up and be orderly ... call me weird ... 
+           In this form, I will ask the person for 2 numbers and then turn around
+          and pass this information to an executable which will be invoked as a CGI application
+      -->
+      <table border="0" width="80%">
+        <tr>
+          <td width="20%" align="right">First Number ?</td>
+          <td width="2%">&nbsp;</td>
+          <td width="58%" align="left"><input type="text" size="15" name="x"/></td>
+        </tr>
+        <tr>
+          <td align="right">Second Number ?</td>
+          <td/>
+          <td align="left"><input type="text" size="15" name="y"/></td>
+        </tr>
+        <tr>
+          <td/>
+          <td/>
+          <td align="left"><input type="submit" name="goForIt" value="Tell me what the answer is">
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

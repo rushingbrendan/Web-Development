@@ -1,0 +1,7 @@
+C:\Users\Rushing\Documents\a3\animalServer-csharp\animals\animals\bin\Debug\animals.exe.config
+C:\Users\Rushing\Documents\a3\animalServer-csharp\animals\animals\bin\Debug\animals.exe
+C:\Users\Rushing\Documents\a3\animalServer-csharp\animals\animals\bin\Debug\animals.pdb
+C:\Users\Rushing\Documents\a3\animalServer-csharp\animals\animals\obj\Debug\animals.csproj.CoreCompileInputs.cache
+C:\Users\Rushing\Documents\a3\animalServer-csharp\animals\animals\obj\Debug\animals.exe
+C:\Users\Rushing\Documents\a3\animalServer-csharp\animals\animals\obj\Debug\animals.pdb
+C:\Users\Rushing\Documents\a3\animalServer-csharp\animals\animals\obj\Debug\animals.csprojAssemblyReference.cache

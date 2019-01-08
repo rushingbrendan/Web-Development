@@ -1,0 +1,193 @@
+<!--
+  FILE          : register.html
+  PROJECT       : PROG2000 - Web Development: Assignment #2 - HTML Forms, Validation and Submission
+  PROGRAMMER    : Brendan Rushing
+  FIRST VERSION : 2018-09-27
+  DESCRIPTION   :   This assignment is an HTML web form for student registration
+                    The user interface asks for:
+                    - Name
+                    - Street
+                    - City
+                    - Province
+                    - Post Code
+                    - Faculty or Student selections
+
+    This assignment uses javascript and regex validation on the input fields.
+    The form prompts the user to fix the entry if there is invalid data entered.
+    
+    The form is submitted to an ASP website using the GET method.
+
+-->
+
+
+
+
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE>SET Registration Form</TITLE>
+    <SCRIPT type="text/javascript">
+
+        // ---------------------------------------------------------------------------------------
+        // NAME:    checkForm
+        // PURPOSE: This function is called when the submit button is pressed. This function
+        //          makes sure that the personType is selected.
+        // ---------------------------------------------------------------------------------------
+        function checkForm() {
+            var whichPersonType = "NONE";
+            var shouldSubmit = true;    // bool to return whether the form can be submitted
+
+
+            // check if the buttons are selected
+            if (document.SampleForm.personType[0].checked == true) { whichPersonType = "student"; }
+            if (document.SampleForm.personType[1].checked == true) { whichPersonType = "employee"; }
+
+            // if personType is not selected then tell the user
+            if (whichPersonType == "NONE") {
+                document.getElementById("userFeedback").innerHTML = "Sorry ... You need to select <b><i> Faculty or Student</i></b>";
+                shouldSubmit = false;   // sorry there's an error - can't submit
+            }
+
+            return shouldSubmit;
+        }
+
+
+        // ---------------------------------------------------------------------------------------
+        // NAME:    personTypeCheckBox
+        // PURPOSE: This function is called when the personType check boxes are selected
+        //          This function unchecks the faculty boxes when student is selected and unchecks
+        //          the student check boxes when faculty is selected.
+        //
+        //          This function also makes the options visible when ther personType box is selected.
+        // ---------------------------------------------------------------------------------------
+        function personTypeCheckBox(inputCode) {
+            if (inputCode == 'student') {
+                document.getElementById("studentBoxes").style.display = "";    //show studentBoxes
+                document.getElementById("facultyBoxes").style.display = "none";         //hide facultyBoxes
+                document.getElementById("checkStudent1").checked = false;               //uncheck student options
+                document.getElementById("checkStudent2").checked = false;
+                document.getElementById("checkStudent3").checked = false;
+                document.getElementById("checkStudent4").checked = false;
+
+            }
+
+            else {
+                document.getElementById("facultyBoxes").style.display = "";    //show facultyBoxes
+                document.getElementById("studentBoxes").style.display = "none";         //hide studentBoxes
+                document.getElementById("checkFaculty1").checked = false;               //uncheck faculty options
+                document.getElementById("checkFaculty2").checked = false;
+                document.getElementById("checkFaculty3").checked = false;
+
+            }
+
+        }
+
+
+    </SCRIPT>
+</HEAD>
+<BODY>
+
+    <!--
+        SET Registration Form creation. use GET method, when submit is clicked option checkForm function
+     -->
+    <FORM name="SETRegistrationForm" action="testRequest.asp" onsubmit="return checkForm();" method="GET">
+        <H1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        SET Registration Form</H1>
+
+        <P>Please complete the following information and when done, press the <B><I>Submit</I></B> button.</P>
+        <TABLE border="0" width="80%">
+            <TR>
+                <!-- Name text input -->
+                <TD width="20%" align="right">Name ?</TD>
+                <TD width="2%">&nbsp;</TD>
+                <TD width="58%" align="left"><INPUT type="text" required pattern ="^[a-zA-Z ]+$" size="40" value="" name="name" /></TD>
+            </TR>
+            <TR>
+                <!-- Street text input -->
+                <TD align="right">Street ?</TD>
+                <TD></TD>
+                <TD align="left"><INPUT type="text" required pattern ="^[a-zA-Z 0123456789]+$" size="40" value="" name="street" /></TD>
+            </TR>
+            <TR>
+                <!-- City text input -->
+                <TD align="right">City ?</TD>
+                <TD></TD>
+                <TD align="left"><INPUT type="text" required pattern ="^[a-zA-Z ]+$" size="40" value="" name="city" /></TD>
+            </TR>
+            <TR>
+                <!-- Prinvce option input -->
+                <TD align="right">Province ?</TD>
+                <TD></TD>
+                <TD align="left">
+                    <SELECT required name="province">
+                        <OPTION value="">--Select Province--</OPTION>
+                        <OPTION value="1">Ontario</OPTION>
+                        <OPTION value="2">Quebec</OPTION>
+                        <OPTION value="3">Nova Scotia</OPTION>
+                        <OPTION value="4">Prince Edward Island</OPTION>
+                        <OPTION value="5">New Brunswick</OPTION>
+                        <OPTION value="6">Newfoundland</OPTION>
+                        <OPTION value="7">Manitoba</OPTION>
+                        <OPTION value="8">Alberta</OPTION>
+                        <OPTION value="9">Saskatchewan</OPTION>
+                        <OPTION value="10">British Columbia</OPTION>
+                        <OPTION value="11">Yukon</OPTION>
+                        <OPTION value="12">Northwest Territories</OPTION>
+                        <OPTION value="13">Nunavut</OPTION>
+                    </SELECT>
+                </TD>
+            </TR>
+            <TR>
+                <!-- Postal Code text input -->
+                <TD align="right">Postal Code ?</TD>
+                <TD></TD>
+                <TD align="left"><INPUT type="text" size="20" required pattern="^[ABCEGHJ-NPRSTVXY][0-9][ABCEGHJ-NPRSTV-Z] [0-9][ABCEGHJ-NPRSTV-Z][0-9]$" value="" name="postalCode" /></TD>
+            </TR>
+            <TR>
+                <!-- Student or Faculty checkbox input -->
+                <TD align="right">Student or Faculty ?</TD>
+                <TD></TD>
+                <TD align="left">
+                    <INPUT type="radio" name="personType" required value="Student" onclick="personTypeCheckBox('student');" />Student&nbsp;
+                    <INPUT type="radio" name="personType" required value="Faculty" onclick="personTypeCheckBox('faculty');" />Faculty&nbsp;
+                </TD>
+            </TR>
+                <!-- Faculty options checbox input -->
+            <TR id="facultyBoxes" style="display:none">
+                <TD align="right">Faculty</TD>
+                <TD></TD>
+                <TD align="left">
+                    <INPUT type="checkbox" name="facultyOption" value="Teach in Engineering" id="checkFaculty1" />Teach in Engineering&nbsp;
+                    <INPUT type="checkbox" name="facultyOption" value="Drive Car to Work" id="checkFaculty2" />Drive Car to Work&nbsp;
+                    <INPUT type="checkbox" name="facultyOption" value="Bring Lunch" id="checkFaculty3" />Bring Lunch&nbsp;
+                </TD>
+            </TR>
+                <!-- Student options checbox input -->
+            <TR id="studentBoxes" style="display:none">
+                <TD align="right">Student</TD>
+                <TD></TD>
+                <TD align="left">
+                    <INPUT type="checkbox" name="studentOption" value="Study in Information Technology" id="checkStudent1" />Study in Information Technology&nbsp;
+                    <INPUT type="checkbox" name="studentOption" value="Own a Laptop Computer" id="checkStudent2" />Own a Laptop Computer&nbsp;<br>
+                    <INPUT type="checkbox" name="studentOption" value="Take Bus to School" id="checkStudent3" />Take Bus to School&nbsp;
+                    <INPUT type="checkbox" name="studentOption" value="Own a Portable Music Player" id="checkStudent4" />Own a Portable Music Player&nbsp;
+
+            </TR>
+
+            <TR>
+                <TD></TD>
+                <TD></TD>
+                <!-- Submit button -->
+                <TD align="left">
+                    <INPUT type="submit" name="goForIt" value="Submit" />&nbsp;&nbsp;
+                <!-- Reset button -->
+                    <INPUT type="reset" name="goForIt" value="Reset" />
+            </TR>
+
+            <TR>
+                <TD colspan="3" style="color:red;" align="center"><div id="userFeedback"></div>
+            </TR>
+        </TABLE>
+    </FORM>
+</BODY>
+</HTML>

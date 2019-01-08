@@ -1,0 +1,144 @@
+/*
+  FILE          : a4StyleSheet.css
+  PROJECT       : PROG2000 - Web Development: Assignment #4 - Hi-Low game in ASP
+  PROGRAMMER    : Brendan Rushing & Josh Rogers
+  FIRST VERSION : 2018-11-01
+  DESCRIPTION   :   Hi-Lo game written with server-side written in ASP
+					Inputs are validated in javascript
+					Forms are written in HTML
+                    The user is asked for a username and then a max number guess
+                    The user then precedes to guess the random number and the range is shown.
+                    The user is shown a message and the background is changed after the game is won.
+                    The user can then play the game again by pressing the Play again button.
+
+
+                    This file is css style sheet for the html page
+
+*/
+
+
+body
+{
+    background-color:       #a14950;  
+}
+h1
+{
+    color:              white;
+    font-size:          42px;
+    font-family:        Arial;
+    text-align:         center;
+
+}
+h3
+{
+    color:              white;
+    font-size:          32px;
+    font-family:        Arial;
+    text-align:         center;
+
+}
+.number
+{
+    color:              blue;
+    font-size:          65px;
+    font-family:        Arial;
+    font-style:         italic;
+    font-weight:        bold;
+    text-align:         center;
+}
+
+.userPrompt
+{
+    color:              black;
+    font-size:          30px;
+    font-family:        Arial;
+    font-weight:        bold;
+    text-align:         center;
+}
+
+.wrongGuess
+{
+    color:              red;
+    font-size:          22px;
+    font-family:        Arial;
+    font-weight:        bold;
+    font-style:         italic;
+    text-align:         center;
+    display: block;
+    margin:auto;
+}
+
+.errorMessage
+{
+    color:              #ff4d4d;
+    font-size:          18px;
+    font-family:        Arial;
+    font-weight:        lighter;
+    font-style:         italic;
+    text-align:         center;
+    display: block;
+    margin:auto;
+}
+
+
+.inputBox
+{
+    font-family:            Courier;
+    font-size:              20px;
+    align-content: center;
+    display: block;
+    margin:auto;
+
+}
+
+
+.button {
+    background-color:green;
+    border: none;
+    color: white;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    align-content: center;
+    display: block;
+    margin:auto;
+}
+
+
+.winningButton {
+    background-color:green;
+    border: none;
+    color: red;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    align-content: center;
+    margin: auto;
+    display: block;
+    width: 100%;
+}
+
+.userForm {
+    background-color: #49A19A;
+    margin: auto;
+    text-align: center;
+    vertical-align: center;
+    width: 400px;
+    height: auto;
+    box-shadow: 10px 10px 19px -8px rgba(0,0,0,0.6);
+    border-radius: 20px 20px 20px 20px;
+    border: 2px solid #551A8B;
+    padding: 10px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}

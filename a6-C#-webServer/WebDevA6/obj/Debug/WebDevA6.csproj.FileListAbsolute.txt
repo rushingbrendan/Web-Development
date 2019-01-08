@@ -1,0 +1,7 @@
+C:\Users\Rushing\Documents\webDevelopment\a6\WebDevA6\WebDevA6\bin\Debug\WebDevA6.exe.config
+C:\Users\Rushing\Documents\webDevelopment\a6\WebDevA6\WebDevA6\bin\Debug\WebDevA6.exe
+C:\Users\Rushing\Documents\webDevelopment\a6\WebDevA6\WebDevA6\bin\Debug\WebDevA6.pdb
+C:\Users\Rushing\Documents\webDevelopment\a6\WebDevA6\WebDevA6\obj\Debug\WebDevA6.csprojAssemblyReference.cache
+C:\Users\Rushing\Documents\webDevelopment\a6\WebDevA6\WebDevA6\obj\Debug\WebDevA6.csproj.CoreCompileInputs.cache
+C:\Users\Rushing\Documents\webDevelopment\a6\WebDevA6\WebDevA6\obj\Debug\WebDevA6.exe
+C:\Users\Rushing\Documents\webDevelopment\a6\WebDevA6\WebDevA6\obj\Debug\WebDevA6.pdb
